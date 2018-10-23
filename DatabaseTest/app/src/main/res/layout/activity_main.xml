@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+     android:orientation="vertical"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent" >
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/create_database"
+        android:text="创建数据库"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_data"
+        android:text="添加数据"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/updata_data"
+        android:text="更新数据"/>
+
+</LinearLayout>
