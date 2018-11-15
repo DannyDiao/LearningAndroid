@@ -1,0 +1,12 @@
+<litepal>
+
+    <dbname value="danny_weather"/>
+
+    <version value = "1"/>
+
+    <list>
+        <mapping class="com.dannydiao.dannyweather.db.Province"/>
+        <mapping class="com.dannydiao.dannyweather.db.City"/>
+        <mapping class="com.dannydiao.dannyweather.db.County"/>
+    </list>
+</litepal>
