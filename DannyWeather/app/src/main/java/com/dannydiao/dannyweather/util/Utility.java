@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.dannydiao.dannyweather.db.City;
 import com.dannydiao.dannyweather.db.County;
 import com.dannydiao.dannyweather.db.Province;
+import com.dannydiao.dannyweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,9 +17,9 @@ public class Utility {
     public static boolean handleProvinceResponse(String response){
         if(!TextUtils.isEmpty(response)){
             try{
-                JSONArray allProvince = new JSONArray(response);
-                for(int i=0;i < allProvince.length();i++){
-                    JSONObject provinceObject = allProvince.getJSONObject(i);
+                JSONArray allProvinces = new JSONArray(response);
+                for(int i=0;i < allProvinces.length();i++){
+                    JSONObject provinceObject = allProvinces.getJSONObject(i);
                     Province province = new Province();
                     province.setProvinceName(provinceObject.getString("name"));
                     province.setProvinceCode(provinceObject.getInt("id"));
@@ -71,4 +73,20 @@ public class Utility {
         }
         return false;
     }
+
+    public static Weather handleWeatherResponse(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent,Weather.class);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.dannydiao.dannyweather.util;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,10 +16,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dannydiao.dannyweather.MainActivity;
 import com.dannydiao.dannyweather.R;
+import com.dannydiao.dannyweather.WeatherActivity;
 import com.dannydiao.dannyweather.db.City;
 import com.dannydiao.dannyweather.db.County;
 import com.dannydiao.dannyweather.db.Province;
+import com.dannydiao.dannyweather.gson.Weather;
 
 import org.litepal.crud.DataSupport;
 
@@ -89,7 +93,20 @@ public class ChooseAreaFragment extends Fragment {
                     selectedCity = cityList.get(position);
                     queryCounties();
 
-                }
+                }else if(currentLevel == LEVEL_COUNTY) {
+                    String weatherId = countyList.get(position).getWeatherId();
+                    if(getActivity() instanceof MainActivity){
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
+
+                }else if(getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity = (WeatherActivity)getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefreshLayout.setRefreshing(true);
+                        activity.requestWeather(weatherId);}
+                    }
             }
         });
         backButton.setOnClickListener(new View.OnClickListener(){
