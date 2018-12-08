@@ -1,0 +1,11 @@
+<TextView xmlns:anroid="http://schemas.android.com/apk/res/android"
+    anroid:id="@+id/news_title"
+    anroid:layout_width="match_parent"
+    anroid:layout_height="wrap_content"
+    anroid:singleLine="true"
+    anroid:ellipsize="end"
+    anroid:textSize="18sp"
+    anroid:paddingLeft="10dp"
+    anroid:paddingRight="10dp"
+    anroid:paddingTop="15dp"
+    anroid:paddingBottom="15dp"/>
